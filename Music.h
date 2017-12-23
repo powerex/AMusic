@@ -7,8 +7,20 @@
 class Music {
 private:
     Human* composer;
-    string opus;
+    int opus;
     Date creationDate;
+public:
+    Human *getComposer() const;
+
+    void setComposer(Human *composer);
+
+    int getOpus() const;
+
+    void setOpus(int opus);
+
+    const Date &getCreationDate() const;
+
+    void setCreationDate(const Date &creationDate);
 };
 
 

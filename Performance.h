@@ -8,13 +8,32 @@
 
 #include "Performer.h"
 #include "Quartet.h"
+#include "Music.h"
 
 class Performance {
 private:
-    Performer* performer;
+    Music* mucis;
     Quartet* quartet;
     Date date;
     long duration;
+public:
+    Music *getMucis() const;
+
+    void setMucis(Music *mucis);
+
+    Quartet *getQuartet() const;
+
+    void setQuartet(Quartet *quartet);
+
+    const Date &getDate() const;
+
+    void setDate(const Date &date);
+
+    long getDuration() const;
+
+    void setDuration(long duration);
+
+    operator long int() const;
 };
 
 

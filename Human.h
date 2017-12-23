@@ -11,7 +11,7 @@
 using namespace std;
 
 class Human {
-private:
+protected:
     string name;
     string surname;
     Date birthday;
