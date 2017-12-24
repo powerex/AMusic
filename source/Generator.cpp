@@ -2,7 +2,7 @@
 // Created by azbest on 15.12.17.
 //
 
-#include "Generator.h"
+#include "../header/Generator.h"
 
 string Generator::getWord() {
 

@@ -2,7 +2,7 @@
 // Created by azbest on 25.11.17.
 //
 
-#include "Music.h"
+#include "../header/Music.h"
 
 Human *Music::getComposer() const {
     return composer;

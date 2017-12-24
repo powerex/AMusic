@@ -2,7 +2,7 @@
 // Created by azbest on 23.11.17.
 //
 
-#include "Human.h"
+#include "../header/Human.h"
 
 const string &Human::getName() const {
     return name;

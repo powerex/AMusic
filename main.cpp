@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "Quartet.h"
-#include "Human.h";
-#include "Generator.h"
+#include "header/Quartet.h"
+#include "header/Human.h";
+#include "header/Generator.h"
 
 
 int main() {
@@ -26,8 +26,6 @@ int main() {
                  Generator::getInstance().getWord(),
                  Generator::getInstance().getDate(),
                  Musician::violinist);
-
-
 
     Performer t1(Generator::getInstance().getWord(),
                  Generator::getInstance().getWord(),

@@ -2,7 +2,7 @@
 // Created by azbest on 23.11.17.
 //
 
-#include "Date.h"
+#include "../header/Date.h"
 
 short Date::getDay() const {
     return day;

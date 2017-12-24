@@ -2,7 +2,7 @@
 // Created by azbest on 25.11.17.
 //
 
-#include "Performance.h"
+#include "../header/Performance.h"
 
 Music *Performance::getMucis() const {
     return mucis;

@@ -2,7 +2,7 @@
 // Created by azbest on 25.11.17.
 //
 
-#include "MusicLibrary.h"
+#include "../header/MusicLibrary.h"
 
 const vector<Performance *> &MusicLibrary::getPerformanceList() const {
     return performanceList;
