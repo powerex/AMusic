@@ -122,6 +122,24 @@ void MusicLibrary::save(bool binary) {
             file.write(reinterpret_cast<char*>(&tL), sizeof(long));
         }
 //Performance write
+        c = performanceList.size();
+        file.write(reinterpret_cast<char*>(&c), sizeof(unsigned long));
+        Performance* p;
+
+        for (auto i=0; i<c; i++) {
+            p = getPerformanceById(i+1);
+            long tmp = p->getMucis()->getId()-1;
+            file.write(reinterpret_cast<char*>(&tmp), sizeof(long));
+            tmp = p->getQuartet()->getId()-1;
+            file.write(reinterpret_cast<char*>(&tmp), sizeof(long));
+            Date tD = p->getDate();
+            tD.write(&file);
+            int tDuration = p->getDuration();
+            file.write(reinterpret_cast<char*>(&tDuration), sizeof(int));
+            tmp = p->getId();
+            file.write(reinterpret_cast<char*>(&tmp), sizeof(long));
+        }
+
         file.close();
     }
     else {
@@ -198,6 +216,25 @@ void MusicLibrary::read(bool binary) {
             this->addMusic(mList[i]);
         }
         Music::setMusicCount(c);
+//Performances read
+        file.read(reinterpret_cast<char*>(&c), sizeof(unsigned long));
+        Performance** pList = new Performance*();
+
+        for (auto i=0; i<c; i++) {
+            long musicId;
+            file.read(reinterpret_cast<char*>(&musicId), sizeof(long));
+            long quartetId;
+            file.read(reinterpret_cast<char*>(&quartetId), sizeof(long));
+            Date tD;
+            tD.read(&file);
+            int tDuration;
+            file.read(reinterpret_cast<char*>(&tDuration), sizeof(int));
+            pList[i] = new Performance(musicList.at(musicId), quartetList.at(quartetId), tD, tDuration);
+            file.read(reinterpret_cast<char*>(&quartetId), sizeof(long));
+            pList[i]->setId(quartetId);
+            this->addPerfofmance(pList[i]);
+        }
+        Performance::setPerformanceCount(c);
         file.close();
     }
     else {
@@ -216,7 +253,14 @@ Human *MusicLibrary::getHumanById(long id) {
     return nullptr;
 }
 
-Human *MusicLibrary::getPerformanceById(long id) {
+Performance *MusicLibrary::getPerformanceById(long id) {
+    if (id < 1 || id > this->performanceList.size())
+        throw new IndexOfBoundException();
+    for (Performance*& p: performanceList) {
+        if (p->getId() == id) {
+            return p;
+        }
+    }
     return nullptr;
 }
 
@@ -246,5 +290,12 @@ void MusicLibrary::printMusics() {
     Music::tableHead();
     for (Music*& m: musicList){
         m->show();
+    }
+}
+
+void MusicLibrary::printPerformances() {
+    Performance::tableHead();
+    for (Performance*& p: performanceList){
+        p->show();
     }
 }

@@ -55,9 +55,11 @@ public:
     void printMusics();
 
     Human* getHumanById(long id);
-    Human* getPerformanceById(long id);
+    Performance* getPerformanceById(long id);
     Music* getMusicById(long id);
     Quartet* getQuartetById(long id);
+
+    void printPerformances();
 };
 
 

@@ -31,6 +31,14 @@ public:
 
     Quartet *getQuartet() const;
 
+    long getId() const;
+
+    void setId(long id);
+
+    static long getPerformanceCount();
+
+    static void setPerformanceCount(long performanceCount);
+
     void setQuartet(Quartet *quartet);
 
     const Date &getDate() const;

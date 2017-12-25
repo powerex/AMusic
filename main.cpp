@@ -14,6 +14,18 @@ long Music::musicCount = 0;
 long Quartet::quartetCount = 0;
 long Performance::performanceCount = 0;
 
+long Performance::getId() const {
+    return id;
+}
+
+void Performance::setId(long id) {
+    Performance::id = id;
+}
+
+void Performance::setPerformanceCount(long performanceCount) {
+    Performance::performanceCount = performanceCount;
+}
+
 int main() {
 
     Human h1(Generator::getInstance().getWord(),
@@ -93,6 +105,9 @@ int main() {
     library.addMusic(&m2);
     library.addMusic(&m1);
 
+    library.addPerfofmance(&pr2);
+    library.addPerfofmance(&pr1);
+
     cout << "\n\n";
     library.printHumans();
 
@@ -101,6 +116,9 @@ int main() {
 
     cout << "\n\n";
     library.printMusics();
+
+    cout << "\n\n";
+    library.printPerformances();
 
 //    Quartet::tableHead();
 //    q1.show();
@@ -168,6 +186,9 @@ int main() {
 
     cout << "\n\n";
     ml.printMusics();
+
+    cout << "\n\n";
+    ml.printPerformances();
 
     return 0;
 }
