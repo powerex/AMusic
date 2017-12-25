@@ -6,11 +6,20 @@
 
 class Music {
 private:
+    long id;
     Human* composer;
     int opus;
     Date creationDate;
+protected:
+    static long musicCount;
 public:
+    Music(Human *composer, int opus, const Date &creationDate);
+
     Human *getComposer() const;
+
+    long getId() const;
+
+    void setId(long id);
 
     void setComposer(Human *composer);
 
@@ -21,6 +30,10 @@ public:
     const Date &getCreationDate() const;
 
     void setCreationDate(const Date &creationDate);
+
+    static void tableHead();
+
+    void show();
 };
 
 

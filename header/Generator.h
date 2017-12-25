@@ -23,6 +23,7 @@ public:
     static Generator& getInstance();
     string getWord();
     Date getDate();
+    int getInt(int lo, int hi);
 };
 
 

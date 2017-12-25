@@ -5,6 +5,10 @@
 #ifndef AMUSIC_DATE_H
 #define AMUSIC_DATE_H
 
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
 
 class Date {
 private:
@@ -27,6 +31,8 @@ public:
     int getYear() const;
 
     void setYear(int year);
+
+    friend ostream& operator<<(ostream& os, const Date& dt);
 };
 
 

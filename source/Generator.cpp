@@ -1,7 +1,3 @@
-//
-// Created by azbest on 15.12.17.
-//
-
 #include "../header/Generator.h"
 
 string Generator::getWord() {
@@ -28,4 +24,8 @@ Date Generator::getDate() {
     int month = rand()%12+1;
     int year = rand()%40+1970;
     return Date(day, month, year);
+}
+
+int Generator::getInt(int lo, int hi) {
+    return rand()%(hi-lo+1)+lo;
 }

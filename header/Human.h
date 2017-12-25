@@ -12,6 +12,9 @@ using namespace std;
 
 class Human {
 protected:
+    static long humanCount;
+protected:
+    long id;
     string name;
     string surname;
     Date birthday;
@@ -19,6 +22,10 @@ public:
     Human(const string &name, const string &surname, const Date &birthday);
 
     Human();
+
+    long getId() const;
+
+    void setId(long id);
 
     const string &getName() const;
 
@@ -31,6 +38,10 @@ public:
     const Date &getBirthday() const;
 
     void setBirthday(const Date &birthday);
+
+    static void tableHead();
+
+    void show();
 };
 
 

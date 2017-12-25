@@ -27,3 +27,32 @@ const Date &Music::getCreationDate() const {
 void Music::setCreationDate(const Date &creationDate) {
     Music::creationDate = creationDate;
 }
+
+long Music::getId() const {
+    return id;
+}
+
+void Music::setId(long id) {
+    Music::id = id;
+}
+
+void Music::show() {
+    cout << "|" << setw(18) << opus << " |"
+         << setw(18) << (*composer).getName() << " | "
+         << setw(13) << creationDate << " |" << setfill(' ')
+         << setw(7) << id << " |\n";
+}
+
+void Music::tableHead() {
+    cout << "============================= MUSIC ===========================\n";
+    cout << "|" << setw(20) << "  Opus |"
+         << setw(20) << "  Composer |"
+         << setw(13) << "  Date |"
+         << setw(10) << "  id |\n";
+    cout << "===============================================================\n";
+}
+
+Music::Music(Human *composer, int opus, const Date &creationDate) : composer(composer), opus(opus),
+                                                                    creationDate(creationDate) {
+    id = ++Music::musicCount;
+}

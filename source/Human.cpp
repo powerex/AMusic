@@ -29,6 +29,32 @@ void Human::setBirthday(const Date &birthday) {
 }
 
 Human::Human(const string &name, const string &surname, const Date &birthday) : name(name), surname(surname),
-                                                                                birthday(birthday) {}
+                                                                                birthday(birthday) {
+    this->id = ++Human::humanCount;
+}
 
 Human::Human() {}
+
+long Human::getId() const {
+    return id;
+}
+
+void Human::setId(long id) {
+    Human::id = id;
+}
+
+void Human::show() {
+    cout << "|" << setw(18) << name << " |"
+         << setw(18) << surname << " | "
+         << setw(13) << birthday << " |" << setfill(' ')
+         << setw(7) << id << " |\n";
+}
+
+void Human::tableHead() {
+    cout << "============================= HUMAN ===========================\n";
+    cout << "|" << setw(20) << "  Name |"
+         << setw(20) << "  Surname |"
+         << setw(13) << "  Date |"
+         << setw(10) << "  id |\n";
+    cout << "===============================================================\n";
+}

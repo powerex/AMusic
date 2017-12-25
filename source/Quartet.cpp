@@ -33,6 +33,7 @@ Performer *Quartet::operator[](int no) {
 }
 
 void Quartet::tableHead() {
+    cout << "\n=================================== QUARTET ====================================\n";
     cout << "|" << setw(20) << "  First Cellist |"
          << setw(20) << "  Second Cellist |"
          << setw(20) << "  Altist |"

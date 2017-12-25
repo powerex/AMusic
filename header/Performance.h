@@ -10,13 +10,21 @@
 #include "Quartet.h"
 #include "Music.h"
 
+#include <iostream>
+#include <iomanip>
+
 class Performance {
 private:
+    long id;
     Music* mucis;
     Quartet* quartet;
     Date date;
     long duration;
+protected:
+    static long performanceCount;
 public:
+    Performance(Music *mucis, Quartet *quartet, const Date &date, long duration);
+
     Music *getMucis() const;
 
     void setMucis(Music *mucis);
@@ -33,7 +41,11 @@ public:
 
     void setDuration(long duration);
 
-    operator long int() const;
+    explicit operator long int() const;
+
+    static void tableHead();
+
+    void show();
 };
 
 

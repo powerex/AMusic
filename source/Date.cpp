@@ -31,3 +31,8 @@ void Date::setYear(int year) {
 Date::Date(short day, short month, int year) : day(day), month(month), year(year) {}
 
 Date::Date() {}
+
+ostream &operator<<(ostream &os, const Date &dt) {
+    os << setfill('0') << setw(2) << dt.day << '/' << setw(2) << dt.month << '/' << setw(4) << dt.year;
+    return os;
+}
