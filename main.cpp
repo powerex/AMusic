@@ -1,8 +1,10 @@
 #include <iostream>
+#include <typeinfo>
 
 #include "header/Quartet.h"
 #include "header/Music.h"
 #include "header/Human.h";
+#include "header/Performer.h"
 #include "header/Generator.h"
 #include "header/Performance.h"
 #include "header/MusicLibrary.h"
@@ -73,15 +75,16 @@ int main() {
 
     MusicLibrary library;
 
-    library.addHuman(&p1);
-    library.addHuman(&p2);
-    library.addHuman(&p3);
+    library.addHuman(&h1);
     library.addHuman(&p4);
+    library.addHuman(&p3);
+    library.addHuman(&p2);
+    library.addHuman(&p1);
     library.addHuman(&t1);
     library.addHuman(&t2);
     library.addHuman(&t3);
     library.addHuman(&t4);
-    library.addHuman(&h1);
+
 
     Quartet::tableHead();
     q1.show();
@@ -100,10 +103,12 @@ int main() {
     pr1.show();
     pr2.show();
 
+/*
     ofstream out;
     out.open("test.dat", ios::trunc | ios::out | ios::binary );
     h1.write(&out);
     p1.write(&out);
+    p3.write(&out);
     out.close();
 
     ifstream in;
@@ -111,12 +116,31 @@ int main() {
     in.seekg(0);
     Human hh;
     hh.read(&in);
-    Human pp;
+    Performer pp;
     pp.read(&in);
+    Performer tt;
+    tt.read(&in);
     in.close();
 
     hh.show();
     pp.show();
+    tt.show();
+
+    if (pp.isPerform(Musician::cellist)) cout << "Cellist\n";
+    if (pp.isPerform(Musician::altist)) cout << "Altist\n";
+    if (pp.isPerform(Musician::violinist)) cout << "Violonist\n";
+
+    cout << "\n\n";
+    if (tt.isPerform(Musician::cellist)) cout << "Cellist\n";
+    if (tt.isPerform(Musician::altist)) cout << "Altist\n";
+    if (tt.isPerform(Musician::violinist)) cout << "Violonist\n";
+//*/
+
+    library.save();
+
+    MusicLibrary ml;
+    ml.read();
+    ml.printHumans();
 
     return 0;
 }

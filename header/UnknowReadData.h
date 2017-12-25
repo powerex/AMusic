@@ -1,0 +1,10 @@
+#ifndef AMUSIC_UNKNOWREADDATA_H
+#define AMUSIC_UNKNOWREADDATA_H
+
+
+class UnknowReadData {
+
+};
+
+
+#endif //AMUSIC_UNKNOWREADDATA_H

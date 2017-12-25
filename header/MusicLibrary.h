@@ -4,8 +4,10 @@
 
 #include <vector>
 #include <fstream>
+#include <typeinfo>
 
 #include "Performance.h"
+#include "Performer.h"
 #include "Music.h"
 
 class MusicLibrary {
@@ -43,6 +45,8 @@ public:
     void addQuartet(Quartet* q);
 
     void save(bool binary = true);
+
+    void read(bool binary = true);
 
     void printHumans();
 };

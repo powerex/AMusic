@@ -3,6 +3,7 @@
 //
 
 #include "../header/MusicLibrary.h"
+#include "../header/UnknowReadData.h"
 
 const vector<Performance *> &MusicLibrary::getPerformanceList() const {
     return performanceList;
@@ -46,14 +47,22 @@ void MusicLibrary::addQuartet(Quartet *q) {
 
 void MusicLibrary::save(bool binary) {
     if (binary) {
-        fstream file;
-        file.open("library.dat", ios::out | ios::in | ios::binary );
+        ofstream file;
+        file.open("library.dat", ios::trunc | ios::out | ios::in | ios::binary );
 
-        file.write(reinterpret_cast<char*>(humanList.size()), sizeof(unsigned long));
+        unsigned long c = humanList.size();
+        file.write(reinterpret_cast<char*>(&c), sizeof(unsigned long));
 
         for (Human*& h: humanList){
-            Human tmpH = *h;
-            //file.write(reinterpret_cast<char*>(tmpH), sizeof(Human));
+            if (typeid(*h).name() == typeid(Human).name()) {
+                file.write("H",sizeof(char));
+                h->write(&file);
+            }
+            else {
+                file.write("P",sizeof(char));
+                h->write(&file);
+            }
+
         }
         file.close();
     }
@@ -78,5 +87,42 @@ void MusicLibrary::printHumans() {
     Human::tableHead();
     for (Human*& h: humanList){
         h->show();
+    }
+}
+
+void MusicLibrary::read(bool binary) {
+    if (binary) {
+        ifstream file;
+        file.open("library.dat", ios::out | ios::in | ios::binary );
+        file.seekg(0);
+
+        unsigned long c = humanList.size();
+        file.read(reinterpret_cast<char*>(&c), sizeof(unsigned long));
+
+        Human** list = new Human*[c];
+
+        for (auto i=0; i<c; i++) {
+            char ch;
+            file.read(&ch,sizeof(char));
+            switch (ch) {
+                case 'H': {
+                    list[i] = new Human();
+                    list[i]->read(&file);
+                    this->humanList.push_back(list[i]);
+                    break;
+                }
+                case 'P': {
+                    list[i] = new Performer();
+                    list[i]->read(&file);
+                    this->humanList.push_back(list[i]);
+                    break;
+                }
+                default: throw new UnknowReadData();
+            }
+        }
+        file.close();
+    }
+    else {
+
     }
 }

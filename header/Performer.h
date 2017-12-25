@@ -17,9 +17,15 @@ public:
 
     void setMusic(Musician::musician music);
 
+    const set<Musician::musician> &getMusic() const;
+
     bool isPerform(Musician::musician music);
 
-    Performer(Human human);
+    explicit Performer(Human human);
+
+    void read(ifstream *in);
+
+    void write(ofstream *out);
 };
 
 

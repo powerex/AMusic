@@ -43,9 +43,9 @@ public:
 
     void show();
 
-    void read(ifstream *in);
+    virtual void read(ifstream *in);
 
-    void write(ofstream *out);
+    virtual void write(ofstream *out);
 };
 
 
