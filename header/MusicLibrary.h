@@ -44,9 +44,9 @@ public:
 
     void addQuartet(Quartet* q);
 
-    void save(bool binary = true);
+    void save(string fileName = "library", bool binary = true);
 
-    void read(bool binary = true);
+    void read(string fileName = "library", bool binary = true);
 
     void printHumans();
 
@@ -55,11 +55,17 @@ public:
     void printMusics();
 
     Human* getHumanById(long id);
+
     Performance* getPerformanceById(long id);
+
     Music* getMusicById(long id);
+
     Quartet* getQuartetById(long id);
 
     void printPerformances();
+
+    double averageCount();
+
 };
 
 

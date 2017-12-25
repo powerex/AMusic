@@ -80,11 +80,18 @@ int main() {
              Generator::getInstance().getInt(1, 100),
              Generator::getInstance().getDate());
 
+    Music m3(&p1,
+             Generator::getInstance().getInt(1, 100),
+             Generator::getInstance().getDate());
+
     Quartet q1(&p1, &p2, &p3, &p4);
     Quartet q2(&t1, &p1, &t3, &t4);
 
     Performance pr1(&m1, &q1, Generator::getInstance().getDate(), Generator::getInstance().getInt(5, 20));
     Performance pr2(&m2, &q2, Generator::getInstance().getDate(), Generator::getInstance().getInt(5, 20));
+    Performance pr3(&m1, &q2, Generator::getInstance().getDate(), Generator::getInstance().getInt(5, 20));
+    Performance pr4(&m1, &q2, Generator::getInstance().getDate(), Generator::getInstance().getInt(5, 20));
+    Performance pr5(&m2, &q2, Generator::getInstance().getDate(), Generator::getInstance().getInt(5, 20));
 
     MusicLibrary library;
 
@@ -102,11 +109,15 @@ int main() {
     library.addQuartet(&q2);
     library.addQuartet(&q1);
 
-    library.addMusic(&m2);
     library.addMusic(&m1);
+    library.addMusic(&m2);
+    library.addMusic(&m3);
 
     library.addPerfofmance(&pr2);
     library.addPerfofmance(&pr1);
+    library.addPerfofmance(&pr3);
+    library.addPerfofmance(&pr4);
+    library.addPerfofmance(&pr5);
 
     cout << "\n\n";
     library.printHumans();
@@ -120,60 +131,9 @@ int main() {
     cout << "\n\n";
     library.printPerformances();
 
-//    Quartet::tableHead();
-//    q1.show();
-//    q2.show();
-
-
-
-//    cout << "\n\n";
-//    Music::tableHead();
-//    m1.show();
-//    m2.show();
-//
-//    cout << "\n\n";
-//    Performance::tableHead();
-//    pr1.show();
-//    pr2.show();
-
-/*
-    ofstream out;
-    out.open("test.dat", ios::trunc | ios::out | ios::binary );
-    h1.write(&out);
-    p1.write(&out);
-    p3.write(&out);
-    out.close();
-
-    ifstream in;
-    in.open("test.dat", ios::in | ios::binary);
-    in.seekg(0);
-    Human hh;
-    hh.read(&in);
-    Performer pp;
-    pp.read(&in);
-    Performer tt;
-    tt.read(&in);
-    in.close();
-
-    hh.show();
-    pp.show();
-    tt.show();
-
-    if (pp.isPerform(Musician::cellist)) cout << "Cellist\n";
-    if (pp.isPerform(Musician::altist)) cout << "Altist\n";
-    if (pp.isPerform(Musician::violinist)) cout << "Violonist\n";
-
-    cout << "\n\n";
-    if (tt.isPerform(Musician::cellist)) cout << "Cellist\n";
-    if (tt.isPerform(Musician::altist)) cout << "Altist\n";
-    if (tt.isPerform(Musician::violinist)) cout << "Violonist\n";
-//*/
-
     library.save();
 
-
     cout << "\n\n\n AFTER READING \n\n";
-
 
     MusicLibrary ml;
     ml.read();
@@ -189,6 +149,10 @@ int main() {
 
     cout << "\n\n";
     ml.printPerformances();
+
+    cout << "\n" << "Average count: " << ml.averageCount() << "\n";
+
+    library.save("textinfo", false);
 
     return 0;
 }

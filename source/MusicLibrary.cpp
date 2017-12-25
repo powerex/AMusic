@@ -71,10 +71,10 @@ void MusicLibrary::printQuartets() {
     }
 }
 
-void MusicLibrary::save(bool binary) {
+void MusicLibrary::save(string fileName, bool binary) {
     if (binary) {
         ofstream file;
-        file.open("library.dat", ios::trunc | ios::out | ios::in | ios::binary );
+        file.open(fileName+".dat", ios::trunc | ios::out | ios::in | ios::binary );
 
 // Human save
         unsigned long c = humanList.size();
@@ -143,14 +143,45 @@ void MusicLibrary::save(bool binary) {
         file.close();
     }
     else {
+        ofstream file;
+        file.open(fileName+".txt", ios::trunc | ios::out | ios::in );
 
+// Human save
+        unsigned long c = humanList.size();
+
+        file << c << "\n";
+        Human* h;
+        for (auto i=0; i<c; i++) {
+            h = getHumanById(i+1);
+            if (typeid(*h).name() == typeid(Human).name()) {
+                file << "H\n";
+                file << h->getId() << "\n";
+                file << h->getName() << "\n";
+                file << h->getSurname() << "\n";
+                file << h->getBirthday().getDay() << " " << h->getBirthday().getMonth() << " " <<h->getBirthday().getYear() << "\n";
+            }
+            else {
+                file << "P\n";
+                file << h->getId() << "\n";
+                file << h->getName() << "\n";
+                file << h->getSurname() << "\n";
+                file << h->getBirthday().getDay() << " " << h->getBirthday().getMonth() << " " <<h->getBirthday().getYear() << "\n";
+                if (((Performer*)h)->isPerform(Musician::cellist))
+                    file << "C" << "\n";
+                if (((Performer*)h)->isPerform(Musician::altist))
+                    file << "A" << "\n";
+                if (((Performer*)h)->isPerform(Musician::violinist))
+                    file << "V" << "\n";
+            }
+        }
+        file.close();
     }
 }
 
-void MusicLibrary::read(bool binary) {
+void MusicLibrary::read(string fileName, bool binary) {
     if (binary) {
         ifstream file;
-        file.open("library.dat", ios::out | ios::in | ios::binary );
+        file.open(fileName+".dat", ios::out | ios::in | ios::binary );
         file.seekg(0);
 
 //Human read
@@ -298,4 +329,18 @@ void MusicLibrary::printPerformances() {
     for (Performance*& p: performanceList){
         p->show();
     }
+}
+
+double MusicLibrary::averageCount() {
+    int* arr = new int[quartetList.size()];
+    for (auto i=0;i<quartetList.size();i++)
+        arr[i] = 0;
+    for (auto i=0;i<performanceList.size();i++) {
+        arr[performanceList.at(i)->getQuartet()->getId()-1]++;
+    }
+    double res = 0.0;
+    for (auto i=0;i<quartetList.size();i++)
+        res += arr[i];
+    res /= quartetList.size();
+    return res;
 }
