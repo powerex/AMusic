@@ -9,7 +9,8 @@ short Date::getDay() const {
 }
 
 void Date::setDay(short day) {
-    Date::day = day;
+    if (day > 0 && day < 32)
+        Date::day = day;
 }
 
 short Date::getMonth() const {
@@ -17,11 +18,13 @@ short Date::getMonth() const {
 }
 
 void Date::setMonth(short month) {
-    Date::month = month;
+    if (month > 0 && month < 13)
+        Date::month = month;
 }
 
 int Date::getYear() const {
-    return year;
+    if (year > 0)
+        return year;
 }
 
 void Date::setYear(int year) {
