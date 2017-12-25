@@ -11,6 +11,7 @@
 
 long Human::humanCount = 0;
 long Music::musicCount = 0;
+long Quartet::quartetCount = 0;
 long Performance::performanceCount = 0;
 
 int main() {
@@ -76,32 +77,46 @@ int main() {
     MusicLibrary library;
 
     library.addHuman(&h1);
-    library.addHuman(&p4);
-    library.addHuman(&p3);
     library.addHuman(&p2);
     library.addHuman(&p1);
+    library.addHuman(&p3);
+    library.addHuman(&p4);
     library.addHuman(&t1);
     library.addHuman(&t2);
     library.addHuman(&t3);
     library.addHuman(&t4);
 
 
-    Quartet::tableHead();
-    q1.show();
-    q2.show();
+    library.addQuartet(&q2);
+    library.addQuartet(&q1);
+
+    library.addMusic(&m2);
+    library.addMusic(&m1);
 
     cout << "\n\n";
     library.printHumans();
 
     cout << "\n\n";
-    Music::tableHead();
-    m1.show();
-    m2.show();
+    library.printQuartets();
 
     cout << "\n\n";
-    Performance::tableHead();
-    pr1.show();
-    pr2.show();
+    library.printMusics();
+
+//    Quartet::tableHead();
+//    q1.show();
+//    q2.show();
+
+
+
+//    cout << "\n\n";
+//    Music::tableHead();
+//    m1.show();
+//    m2.show();
+//
+//    cout << "\n\n";
+//    Performance::tableHead();
+//    pr1.show();
+//    pr2.show();
 
 /*
     ofstream out;
@@ -138,9 +153,21 @@ int main() {
 
     library.save();
 
+
+    cout << "\n\n\n AFTER READING \n\n";
+
+
     MusicLibrary ml;
     ml.read();
+
+    cout << "\n\n";
     ml.printHumans();
+
+    cout << "\n\n";
+    ml.printQuartets();
+
+    cout << "\n\n";
+    ml.printMusics();
 
     return 0;
 }

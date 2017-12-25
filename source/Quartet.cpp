@@ -20,6 +20,7 @@ Quartet::Quartet(Performer *firstCellist, Performer *secondCellist, Performer *a
     quartet[1] = secondCellist;
     quartet[2] = altist;
     quartet[3] = violonist;
+    id = ++Quartet::quartetCount;
 }
 
 Quartet::~Quartet() {
@@ -33,12 +34,13 @@ Performer *Quartet::operator[](int no) {
 }
 
 void Quartet::tableHead() {
-    cout << "\n=================================== QUARTET ====================================\n";
+    cout << "\n======================================= QUARTET ==========================================\n";
     cout << "|" << setw(20) << "  First Cellist |"
          << setw(20) << "  Second Cellist |"
          << setw(20) << "  Altist |"
-         << setw(20) << "  Violonist |\n";
-    cout << "================================================================================\n";
+         << setw(20) << "  Violonist |"
+         << setw(10) << " ID |\n";
+    cout << "==========================================================================================\n";
 
 }
 
@@ -46,5 +48,20 @@ void Quartet::show() {
     cout << "|" << setw(18) << quartet[0]->getName() << " |"
          << setw(18) << quartet[1]->getName() << " |"
          << setw(18) << quartet[2]->getName() << " |"
-         << setw(17) << quartet[3]->getName() << " |\n";
+         << setw(18) << quartet[3]->getName() << " |"
+         << setw(7) << id << " |\n";
+}
+
+Quartet::Quartet() {}
+
+long Quartet::getId() const {
+    return id;
+}
+
+void Quartet::setId(long id) {
+    Quartet::id = id;
+}
+
+void Quartet::setQuartetCount(long quartetCount) {
+    Quartet::quartetCount = quartetCount;
 }

@@ -74,3 +74,7 @@ void Human::write(ofstream *out) {
     out->write("\0",sizeof(char));
     this->birthday.write(out);
 }
+
+void Human::setHumanCount(long humanCount) {
+    Human::humanCount = humanCount;
+}

@@ -13,6 +13,10 @@ private:
 protected:
     static long musicCount;
 public:
+    static void setMusicCount(long musicCount);
+
+    Music();
+
     Music(Human *composer, int opus, const Date &creationDate);
 
     Human *getComposer() const;

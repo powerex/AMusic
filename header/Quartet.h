@@ -15,8 +15,15 @@ using namespace std;
 class Quartet {
 private:
     Performer** quartet;
+    long id;
+protected:
+    static long quartetCount;
 public:
     Performer **getQuartet() const;
+
+    static void setQuartetCount(long quartetCount);
+
+    Quartet();
 
     Quartet(Performer* firstCellist, Performer* secondCellist, Performer* altist, Performer* violonist);
 
@@ -29,6 +36,14 @@ public:
     static void tableHead();
 
     void show();
+
+    long getId() const;
+
+    void setId(long id);
+
+    void read(ifstream *in);
+
+    void write(ofstream *out);
 
 };
 

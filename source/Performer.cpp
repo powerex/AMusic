@@ -39,7 +39,6 @@ void Performer::write(ofstream *out) {
         Musician::musician mm = m;
         out->write(reinterpret_cast<char*>(&mm), sizeof(Musician::musician));
     }
-
 }
 
 const set<Musician::musician> &Performer::getMusic() const {

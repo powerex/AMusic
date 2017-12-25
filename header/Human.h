@@ -19,6 +19,9 @@ protected:
     string surname;
     Date birthday;
 public:
+
+    static void setHumanCount(long humanCount);
+
     Human(const string &name, const string &surname, const Date &birthday);
 
     Human();

@@ -56,3 +56,9 @@ Music::Music(Human *composer, int opus, const Date &creationDate) : composer(com
                                                                     creationDate(creationDate) {
     id = ++Music::musicCount;
 }
+
+void Music::setMusicCount(long musicCount) {
+    Music::musicCount = musicCount;
+}
+
+Music::Music() {}
