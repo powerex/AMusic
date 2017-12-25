@@ -13,6 +13,10 @@ long Performance::performanceCount = 0;
 
 int main() {
 
+    Human h1(Generator::getInstance().getWord(),
+             Generator::getInstance().getWord(),
+             Generator::getInstance().getDate());
+
     Performer p1(Generator::getInstance().getWord(),
                  Generator::getInstance().getWord(),
                  Generator::getInstance().getDate(),
@@ -53,10 +57,6 @@ int main() {
                  Generator::getInstance().getDate(),
                  Musician::violinist);
 
-    Human h1(Generator::getInstance().getWord(),
-             Generator::getInstance().getWord(),
-             Generator::getInstance().getDate());
-
     Music m1(&h1,
              Generator::getInstance().getInt(1, 100),
              Generator::getInstance().getDate());
@@ -81,7 +81,7 @@ int main() {
     library.addHuman(&t2);
     library.addHuman(&t3);
     library.addHuman(&t4);
-    library.addHuman(&(Performer)h1);
+    library.addHuman(&h1);
 
     Quartet::tableHead();
     q1.show();
@@ -99,5 +99,24 @@ int main() {
     Performance::tableHead();
     pr1.show();
     pr2.show();
+
+    ofstream out;
+    out.open("test.dat", ios::trunc | ios::out | ios::binary );
+    h1.write(&out);
+    p1.write(&out);
+    out.close();
+
+    ifstream in;
+    in.open("test.dat", ios::in | ios::binary);
+    in.seekg(0);
+    Human hh;
+    hh.read(&in);
+    Human pp;
+    pp.read(&in);
+    in.close();
+
+    hh.show();
+    pp.show();
+
     return 0;
 }

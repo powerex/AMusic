@@ -58,3 +58,19 @@ void Human::tableHead() {
          << setw(10) << "  id |\n";
     cout << "===============================================================\n";
 }
+
+void Human::read(ifstream *in) {
+    in->read((char*)(&(this->id)), sizeof(long));
+    std::getline(*in, this->name, '\0');
+    std::getline(*in, this->surname, '\0');
+    this->birthday.read(in);
+}
+
+void Human::write(ofstream *out) {
+    out->write(reinterpret_cast<char*>(&(this->id)), sizeof(long));
+    out->write(reinterpret_cast<const char*>(this->name.c_str()), this->name.size());
+    out->write("\0",sizeof(char));
+    out->write(reinterpret_cast<const char*>(this->surname.c_str()), this->surname.size());
+    out->write("\0",sizeof(char));
+    this->birthday.write(out);
+}

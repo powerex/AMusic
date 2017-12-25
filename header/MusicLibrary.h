@@ -10,7 +10,7 @@
 
 class MusicLibrary {
 private:
-    vector<Performer*> humanList;
+    vector<Human*> humanList;
     vector<Performance*> performanceList;
     vector<Music*> musicList;
     vector<Quartet*> quartetList;
@@ -18,9 +18,9 @@ public:
 
     MusicLibrary();
 
-    const vector<Performer *> &getHumanList() const;
+    const vector<Human *> &getHumanList() const;
 
-    void setHumanList(const vector<Performer *> &humanList);
+    void setHumanList(const vector<Human *> &humanList);
 
     const vector<Performance *> &getPerformanceList() const;
 
@@ -34,7 +34,7 @@ public:
 
     void setQuartetList(const vector<Quartet *> &quartetList);
 
-    void addHuman(Performer* h);
+    void addHuman(Human* h);
 
     void addPerfofmance(Performance* p);
 

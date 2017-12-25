@@ -42,6 +42,10 @@ public:
     static void tableHead();
 
     void show();
+
+    void read(ifstream *in);
+
+    void write(ofstream *out);
 };
 
 

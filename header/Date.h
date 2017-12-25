@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -33,6 +34,10 @@ public:
     void setYear(int year);
 
     friend ostream& operator<<(ostream& os, const Date& dt);
+
+    void read(ifstream *in);
+
+    void write(ofstream *out);
 };
 
 

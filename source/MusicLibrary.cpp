@@ -50,8 +50,10 @@ void MusicLibrary::save(bool binary) {
         file.open("library.dat", ios::out | ios::in | ios::binary );
 
         file.write(reinterpret_cast<char*>(humanList.size()), sizeof(unsigned long));
-        for (int i=0; i<humanList.size(); i++) {
-            //file.write(reinterpret_cast<char*>(*humanList.at(i)), sizeof(Performer));
+
+        for (Human*& h: humanList){
+            Human tmpH = *h;
+            //file.write(reinterpret_cast<char*>(tmpH), sizeof(Human));
         }
         file.close();
     }
@@ -60,21 +62,21 @@ void MusicLibrary::save(bool binary) {
     }
 }
 
-const vector<Performer *> &MusicLibrary::getHumanList() const {
+const vector<Human *> &MusicLibrary::getHumanList() const {
     return humanList;
 }
 
-void MusicLibrary::setHumanList(const vector<Performer *> &humanList) {
+void MusicLibrary::setHumanList(const vector<Human *> &humanList) {
     MusicLibrary::humanList = humanList;
 }
 
-void MusicLibrary::addHuman(Performer *h) {
+void MusicLibrary::addHuman(Human *h) {
     humanList.push_back(h);
 }
 
 void MusicLibrary::printHumans() {
     Human::tableHead();
-    for (Performer*& h: humanList){
+    for (Human*& h: humanList){
         h->show();
     }
 }

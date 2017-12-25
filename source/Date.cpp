@@ -36,3 +36,11 @@ ostream &operator<<(ostream &os, const Date &dt) {
     os << setfill('0') << setw(2) << dt.day << '/' << setw(2) << dt.month << '/' << setw(4) << dt.year;
     return os;
 }
+
+void Date::read(ifstream *in) {
+    in->read((char*)this, sizeof(Date));
+}
+
+void Date::write(ofstream *out) {
+    out->write(reinterpret_cast<char*>(this), sizeof(Date));
+}
